@@ -11,7 +11,8 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 5000:5000 myapp'
+                sh 'docker rm -f mycontainer || true'
+                sh 'docker run -d -p 5000:5000 --name mycontainer myapp'
             }
         }
     }
