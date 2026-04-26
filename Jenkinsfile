@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
+         stage('Clone Code') {
             steps {
-                git 'https://github.com/surajgharde/CI-CD_Pipeline.git'
+                git branch: 'main', url: 'https://github.com/surajgharde/CI-CD_Pipeline.git'
             }
-        }
+        }   
 
         stage('Build Docker Image') {
             steps {
