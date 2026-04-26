@@ -9,9 +9,12 @@ pipeline {
             }
         }
 
-        stage('Remove Old Container') {
+        stage('Free Port 5000') {
             steps {
-                sh 'docker rm -f mycontainer || true'
+                sh '''
+                docker ps -q --filter "publish=5000" | xargs -r docker stop
+                docker ps -aq --filter "publish=5000" | xargs -r docker rm
+                '''
             }
         }
 
