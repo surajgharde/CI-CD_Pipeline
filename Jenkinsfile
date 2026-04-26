@@ -18,6 +18,12 @@ pipeline {
             }
         }
 
+        stage('Remove Old Container Name') {
+            steps {
+                sh 'docker rm -f mycontainer || true'
+            }
+        }
+
         stage('Run Container') {
             steps {
                 sh 'docker run -d -p 5000:5000 --name mycontainer myapp'
